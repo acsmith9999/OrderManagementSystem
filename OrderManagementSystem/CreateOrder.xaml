@@ -1,0 +1,47 @@
+﻿<Window x:Class="OrderManagementSystem.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrderManagementSystem"
+        mc:Ignorable="d"
+        Title="Edit Order Details" Height="450" Width="800">
+    <Grid>
+        <ListView x:Name="lvNewOrder" HorizontalAlignment="Left" Height="275" VerticalAlignment="Top" Width="786">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Item ID" DisplayMemberBinding="{Binding Path=StockItemId}" Width="Auto"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Description}" Width="Auto"/>
+                    <GridViewColumn Header="PPU" DisplayMemberBinding="{Binding Path=Price}" Width="Auto"/>
+                    <GridViewColumn Header="No. In Order" DisplayMemberBinding="{Binding Path=Quantity}" Width="Auto"/>
+                    <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Path=Total}" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnSubmitOrder" Content="Submit Order" HorizontalAlignment="Left" Margin="628,386,0,0" VerticalAlignment="Top" Width="83" Click="btnSubmitOrder_Click"/>
+        <Button x:Name="btnCancelOrder" Content="Cancel Order" HorizontalAlignment="Left" Margin="507,386,0,0" VerticalAlignment="Top" Width="80" Click="btnCancelOrder_Click"/>
+        <Label Content="Selected item:" HorizontalAlignment="Left" Margin="14,292,0,0" VerticalAlignment="Top"/>
+        <Label Content="Requested Quantity:" HorizontalAlignment="Left" Margin="14,323,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblQuantity" HorizontalAlignment="Left" Margin="184,361,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Height="23" Margin="206,326,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="53" IsEnabled="False"/>
+        <Button x:Name="btnLess" Content="&lt;" HorizontalAlignment="Left" Margin="172,327,0,0" VerticalAlignment="Top" Width="24" Click="btnLess_Click"/>
+        <Button x:Name="btnMore" Content="&gt;" HorizontalAlignment="Left" Margin="270,327,0,0" VerticalAlignment="Top" Width="24" Click="btnMore_Click"/>
+        <Button x:Name="btnAddToOrder" Content="Add To Order" HorizontalAlignment="Left" Margin="172,356,0,0" VerticalAlignment="Top" Width="122" Click="btnAddToOrder_Click"/>
+        <Button x:Name="btnDeleteFromOrder" Content="Delete From Order" HorizontalAlignment="Left" Margin="172,386,0,0" VerticalAlignment="Top" Width="122" Click="btnDeleteFromOrder_Click"/>
+        <ComboBox x:Name="cboStockItems" HorizontalAlignment="Left" Margin="172,296,0,0" VerticalAlignment="Top" Width="122" SelectionChanged="cboStockItems_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button x:Name="btnSaveDraftOrder" Content="Save Draft Order" HorizontalAlignment="Left" Margin="358,386,0,0" VerticalAlignment="Top" Width="102" Click="btnSaveDraftOrder_Click"/>
+        <Label Content="Total Cost of Order:" HorizontalAlignment="Left" Margin="507,353,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtTotalCost" HorizontalAlignment="Left" Height="22" Margin="628,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsEnabled="False"/>
+        <Label Content="Cost to add item(s):" HorizontalAlignment="Left" Margin="507,323,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCostToAdd" HorizontalAlignment="Left" Height="23" Margin="628,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" IsEnabled="False" DataContext="{Binding SelectedItem, ElementName=cboStockItems}" Text="{Binding Price, Mode=OneWay}"/>
+        <Label Content="In stock:" HorizontalAlignment="Left" Margin="358,292,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtInStock" HorizontalAlignment="Left" Height="23" Margin="417,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False"/>
+
+    </Grid>
+</Window>
